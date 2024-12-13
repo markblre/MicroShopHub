@@ -26,13 +26,11 @@ public class UserController {
     /**
      * Méthode pour enregistrer un nouvel utilisateur.
      * 
-     * @param user nom d'utilisateur
-     * @param password mot de passe en clair
+     * @param registerRequest nom d'utilisateur et mot de passe en clair
      * @return un jeton JWT pour l'utilisateur nouvellement créé
      */
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest) {
-        System.err.println("--> register");
         try {
             String token = userService.registerUser(registerRequest.getUsername(), registerRequest.getPassword());
             return ResponseEntity.ok().body(token);
